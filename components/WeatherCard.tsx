@@ -60,7 +60,7 @@ export default function WeatherCard() {
     useEffect(() => {
         const updateBackgroundImage = () => {
             if (data) {
-                const weather = data?.weather[0].main?.toLowerCase();
+                const weather = data.weather.main?.toLowerCase();
                 let imageUrl;
                 switch (weather) {
                     case "clear":
