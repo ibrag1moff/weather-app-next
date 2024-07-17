@@ -76,13 +76,13 @@ export default function Sidebar({ data, fetchData }: SidebarProps) {
                     <div className="flex items-center justify-between">
                         <p className="font-medium text-gray-300">Country</p>
                         <span className="font-semibold text-gray-300">
-                            {data?.sys.country}
+                            {data?.sys?.country}
                         </span>
                     </div>
                     <div className="flex items-center justify-between">
                         <p className="font-medium text-gray-300">Weather</p>
                         <>
-                            {data?.weather.map((x: WeatherInfo) => (
+                            {data?.weather?.map((x: WeatherInfo) => (
                                 <span
                                     className="font-semibold text-gray-300"
                                     key={x.id}

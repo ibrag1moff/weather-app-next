@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 // utils
 import { fetchWeatherData, weatherData } from "@/utils/weather";
+import { saveToLocalStorage, getFromLocalStorage } from "@/utils/localStorage";
 
 // icons
 import { RiCelsiusFill } from "react-icons/ri";
@@ -22,10 +23,19 @@ export interface WeatherInfo {
 }
 
 export default function WeatherCard() {
-    const [data, setData] = useState<weatherData | null>(null);
+    const [data, setData] = useState<weatherData | undefined>(
+        getFromLocalStorage("weatherData")
+    );
     const [error, setError] = useState<string>("");
     const [currentDay, setCurrentDay] = useState<string>("");
     const { search } = useSearch();
+
+    // save to localstorage
+    useEffect(() => {
+        if (data) {
+            saveToLocalStorage("weatherData", data);
+        }
+    }, [data]);
 
     // fetch data
     const fetchData = async () => {
@@ -60,7 +70,7 @@ export default function WeatherCard() {
     useEffect(() => {
         const updateBackgroundImage = () => {
             if (data) {
-                const weather = data.weather.main?.toLowerCase();
+                const weather = data.weather[0].main?.toLowerCase();
                 let imageUrl;
                 switch (weather) {
                     case "clear":

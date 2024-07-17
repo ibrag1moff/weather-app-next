@@ -35,7 +35,7 @@ export type weatherData = {
         description: string;
         icon: string;
         wind: { speed: number; deg: number };
-    };
+    }[];
 };
 
 export const fetchWeatherData = async (query: string) => {
