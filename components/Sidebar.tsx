@@ -9,6 +9,7 @@ import { useSearch } from "@/context/SearchContext";
 
 // icons
 import { RiCelsiusFill } from "react-icons/ri";
+import { IoSearchOutline } from "react-icons/io5";
 
 interface SidebarProps {
     data: any;
@@ -26,18 +27,26 @@ export default function Sidebar({ data, fetchData }: SidebarProps) {
 
     return (
         <>
-            <div className="w-full md:w-[45%] lg:w-[40%] md:ml-auto h-screen bg-white p-4 backdrop-blur-md bg-opacity-30 shadow-lg md:rounded-xl">
+            <div className="w-full md:w-[45%] lg:w-[40%] md:ml-auto h-screen bg-white p-4 backdrop-blur-lg bg-opacity-30 shadow-lg md:rounded-xl">
                 <form
                     onSubmit={handleSubmit}
                     className="flex items-center justify-center py-8"
                 >
-                    <input
-                        className="py-2 w-[350px] bg-gray-300 rounded-xl pl-3"
-                        type="text"
-                        placeholder="Search..."
-                        value={search}
-                        onChange={(e) => setSearch(e.target.value)}
-                    />
+                    <div className="relative">
+                        <input
+                            className="py-2 w-[350px] bg-gray-300 rounded-xl pl-3"
+                            type="text"
+                            placeholder="Search..."
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                        />
+                        <span
+                            onClick={handleSubmit}
+                            className="absolute right-2 top-2 z-20 cursor-pointer"
+                        >
+                            <IoSearchOutline size={25} />
+                        </span>
+                    </div>
                 </form>
                 <h1 className="font-medium text-center uppercase tracking-[2px] mb-4 text-gray-300">
                     Weather Details
